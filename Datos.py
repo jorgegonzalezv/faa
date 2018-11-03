@@ -56,14 +56,15 @@ class Datos(object):
 				if (self.tipoAtributos[j] == 'Continuo'):
 					try:
 						#Casteamos los atributos continuos a float pues sera util para el futuro
-						float(fila_i[j])
+						#print(fila_i)
+						fila_i[j] = float(fila_i[j])
 					except ValueError:
 						print("El tipo del atributo debe ser CONTINUO y no lo es.")
 						f.close()
 						raise
 				elif (self.tipoAtributos[j] == 'Nominal'):
 					try:
-						str(fila_i[j])
+						fila_i[j] = str(fila_i[j])
 					except ValueError:
 						print("El tipo del atributo debe ser NOMINAL y no lo es.")
 						f.close()
@@ -74,6 +75,9 @@ class Datos(object):
 
 		#Reajustamos el numero de filas y columnas para generar la matriz con toda la informacion
 		self.datos = np.reshape(self.datos, (self.numInstancias, len(self.nombreAtributos)))
+
+		
+		#print(type(self.datos[0, 1]))
 
 		#Creacion de variables auxiliares para el siguiente bucle
 		lista = []
